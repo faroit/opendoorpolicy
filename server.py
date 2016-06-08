@@ -16,7 +16,7 @@ def hello_world():
 @app.route("/press")
 def update_lamp():
     GPIO.output(18, True)
-    time.sleep(1)
+    time.sleep(3)
     GPIO.output(18, False)
     return render_template('main.html')
 
