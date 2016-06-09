@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, url_for
 import time
 import RPi.GPIO as GPIO
 
@@ -9,16 +9,16 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
+def index():
     return render_template('main.html')
 
 
 @app.route("/press")
-def update_lamp():
+def open_door():
     GPIO.output(18, True)
     time.sleep(3)
     GPIO.output(18, False)
-    return render_template('main.html')
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
