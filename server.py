@@ -1,5 +1,6 @@
-from flask import Flask, redirect, render_template, url_for
+import click
 import time
+from flask import Flask, redirect, render_template, url_for
 
 
 class Door(object):
@@ -37,5 +38,17 @@ def press():
     return redirect(url_for('index'))
 
 
+@click.command()
+@click.option('--pem', help='Private Key and Certificate File')
+def main(pem):
+    if pem is not None:
+        import ssl
+        context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+        context.load_cert_chain(pem, pem)
+        app.run(host='0.0.0.0', port=8000, ssl_context=context)
+    else:
+        app.run(host='0.0.0.0', port=8000)
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    main()
