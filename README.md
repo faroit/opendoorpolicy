@@ -12,6 +12,11 @@ Install
     pip install -r requirements/production.txt  # on Raspberry Pi or
     pip install -r requirements/dev.txt         # on development machine
 
+set up users
+
+    cp users_example.py users.py
+    vim users.py
+
 and run
 
     python server.py

@@ -6,6 +6,8 @@
         body {
             padding: 0;
             margin: 0;
+            font-size: 60pt;
+            font-family: sans-serif;
         }
 
         .button_area {
@@ -21,6 +23,8 @@
           margin: 0;
           width: 60%;
           height: 100%;
+          color: #ffffff;
+          text-align: center;
         }
 
         @keyframes slide-up {
@@ -50,7 +54,9 @@
     </head>
     <body>
         <div class='button_area'>
-            <a href="/press" class="large_button"></a>
+            <a href="{{ url_for('press', token=token) }}" class="large_button">
+               Welcome home, {{ username }}!
+            </a>
         </div>
     </body>
 </html>
